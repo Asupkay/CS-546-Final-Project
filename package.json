@@ -1,0 +1,19 @@
+{
+  "name": "cs-546-final-project",
+  "version": "1.0.0",
+  "description": "Web Programming 1 final project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://asupkay@github.com/Asupkay/CS-546-Final-Project.git"
+  },
+  "author": "Alex Supkay, Michael John, Adam Banatt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Asupkay/CS-546-Final-Project/issues"
+  },
+  "homepage": "https://github.com/Asupkay/CS-546-Final-Project#readme"
+}
