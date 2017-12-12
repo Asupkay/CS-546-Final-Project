@@ -6,6 +6,7 @@ const Strategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt-nodejs');
 
 const app = express();
+const configRoutes = require("./routes");
 const static = express.static(__dirname + '/public');
 const exphbs = require('express-handlebars');
 const handlebars = require('handlebars');
@@ -13,6 +14,7 @@ const handlebars = require('handlebars');
 //handlebars
 app.use('/public', static);
 app.use(bodyParser.json());
+configRoutes(app);
 
 //default layout. set to default layout
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
