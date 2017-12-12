@@ -1,5 +1,5 @@
-modules.exports = {
-  function ensureLoggedIn(req, res, next) {
+module.exports = {
+  ensureLoggedIn: (req, res, next) => {
     if (req.user) {
         return next();
     } else {
@@ -7,7 +7,7 @@ modules.exports = {
     }
   },
 
-  function preventDoubleLogin(req, res, next) {
+  preventDoubleLogin: (req, res, next) => {
     if (req.user) {
      res.redirect('/rolecheck');
     } else {
