@@ -56,7 +56,7 @@ function ensureLoggedIn(req, res, next) {
     if (req.user) {
         return next();
     } else {
-        res.redirect('/');
+        res.redirect('/login');
     }
 }
 
@@ -70,7 +70,11 @@ function preventDoubleLogin(req, res, next) {
 
 // if not logged in, redirect to /login. else, redirect to rolecheck
 app.get('/', preventDoubleLogin, function(req, res) {
-  res.render('login');
+  res.redirect('login');
+});
+
+app.get('/login', function(req, res) {
+    res.render('login/form');
 });
 
 // If authentication fails, display an error message
@@ -78,7 +82,7 @@ app.get('/', preventDoubleLogin, function(req, res) {
 app.post('/login', function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
     if (err) { return next(err); }
-    if (!user) { return res.render('login', { message: 'Authentication failed' }); }
+    if (!user) { return res.render('login/form', { message: 'Authentication failed' }); }
     req.logIn(user, function(err) {
       if (err) { return next(err); }
       return res.redirect('/rolecheck');
