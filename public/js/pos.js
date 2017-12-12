@@ -12,7 +12,12 @@ let pushToOrder = (id, name) => {
 }
 
 let sendOrder = () => {
-    
+    if(currentOrder.length > 0) {
+        let xhttp = new XMLHttpRequest();
+        xhttp.open("POST", "/pos", true);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        xhttp.send(JSON.stringify(currentOrder));
+    }
 }
 
 let deleteItem = (listItem) => {

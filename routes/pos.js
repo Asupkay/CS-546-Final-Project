@@ -17,7 +17,9 @@ router.get("/", (req, res) => {
 });
 
 router.post('/', (req, res) => {
+    console.log(req.body);
     if (req.user) {
+        console.log("here2");
         let order = req.body.order;
 
         //TODO: Push to database here
