@@ -5,3 +5,4 @@ router.get("/", (req, res) => {
     res.render('login/form');
 });
 
+module.exports = router;

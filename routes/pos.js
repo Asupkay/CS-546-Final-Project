@@ -22,4 +22,6 @@ router.post('/', (req, res) => {
 
         //TODO: Push to database here
     }
-}
+});
+
+module.exports = router;
