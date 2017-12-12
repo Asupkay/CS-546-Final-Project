@@ -56,7 +56,7 @@ function ensureLoggedIn(req, res, next) {
     if (req.user) {
         return next();
     } else {
-        res.redirect('/');
+        res.redirect('/login');
     }
 }
 
@@ -70,7 +70,11 @@ function preventDoubleLogin(req, res, next) {
 
 // if not logged in, redirect to /login. else, redirect to rolecheck
 app.get('/', preventDoubleLogin, function(req, res) {
-  res.render('login');
+  res.redirect('login');
+});
+
+app.get('/login', function(req, res) {
+    res.render('login');
 });
 
 // If authentication fails, display an error message
