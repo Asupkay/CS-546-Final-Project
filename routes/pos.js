@@ -2,11 +2,17 @@ const express = require("express");
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    if (req.user) {
-        res.render('pos/register');
-    } else {
-        res.redirect('/login');
-    }
+    let items = {
+                    items: [
+                        {
+                            name: "burger"
+                        },
+                        {
+                            name: "icecream"
+                        }
+                    ]
+                 }; 
+    res.render('pos/register', {items: items});
 
 });
 

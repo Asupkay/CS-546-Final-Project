@@ -1,6 +1,10 @@
 <div>
     <article class="items">
-        {{{items}}}
+        {{#each items}}
+            <div>
+                <p>{{name}}</p>
+            </div>
+        {{/each}} 
     </article>
     <article class="order-log">
     </article>
