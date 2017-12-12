@@ -45,7 +45,9 @@ passport.deserializeUser(function(id, cb) {
   });
 });
 
+app.use(require('cookie-parser')());
 app.use(require('body-parser').urlencoded({ extended: true }));
+app.use(require('express-session')({ secret: 'donttellme', resave: false, saveUninitialized: false }));
 
 app.use(passport.initialize());
 app.use(passport.session());
