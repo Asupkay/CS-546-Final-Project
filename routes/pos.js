@@ -4,9 +4,11 @@ const router = express.Router();
 router.get("/", (req, res) => {
     let items = [
                         {
+                            id: "1",
                             name: "burger"
                         },
                         {
+                            id: "2",
                             name: "icecream"
                         }
                  ]; 
