@@ -74,7 +74,7 @@ app.get('/', preventDoubleLogin, function(req, res) {
 });
 
 app.get('/login', function(req, res) {
-    res.render('login');
+    res.render('login/form');
 });
 
 // If authentication fails, display an error message
@@ -82,7 +82,7 @@ app.get('/login', function(req, res) {
 app.post('/login', function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
     if (err) { return next(err); }
-    if (!user) { return res.render('login', { message: 'Authentication failed' }); }
+    if (!user) { return res.render('login/form', { message: 'Authentication failed' }); }
     req.logIn(user, function(err) {
       if (err) { return next(err); }
       return res.redirect('/rolecheck');
