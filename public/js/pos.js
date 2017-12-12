@@ -1,9 +1,12 @@
 let item = document.getElementsByClassName("item");
+let orderList = document.getElementById("orderList");
 let currentOrder = [];
 
 let pushToOrder = (id, name) => {
     currentOrder.push(id);
-    console.log(currentOrder);
+    let li = document.createElement("li");
+    li.appendChild(document.createTextNode(name));
+    orderList.appendChild(li);
 }
 
 if(item) {
