@@ -1,11 +1,11 @@
 <div>
-    <article class="items">
+    <article id="items">
         {{#each items}}
-            <div>
-                <p>{{name}}</p>
+            <div onclick="pushtorder({{this.name}})">
+                <p>{{this.name}}</p>
             </div>
         {{/each}} 
     </article>
-    <article class="order-log">
+    <article id="order-log">
     </article>
 </div>

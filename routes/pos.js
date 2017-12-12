@@ -2,16 +2,14 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/", (req, res) => {
-    let items = {
-                    items: [
+    let items = [
                         {
                             name: "burger"
                         },
                         {
                             name: "icecream"
                         }
-                    ]
-                 }; 
+                 ]; 
     res.render('pos/register', {items: items});
 
 });
