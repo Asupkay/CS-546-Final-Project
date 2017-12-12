@@ -1,7 +1,6 @@
 const loginRoutes = require("./login");
 const queueRoutes = require("./queue");
-const loginRoutes = require("./login");
-const pos = require("./pos");
+const posRoutes = require("./pos");
 
 const constructorMethod = (app) => {
     app.use("/login", loginRoutes);
