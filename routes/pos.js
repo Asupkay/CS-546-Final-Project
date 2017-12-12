@@ -2,6 +2,16 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/", (req, res) => {
+    let parties = [
+                    {
+                        partyID: "1",
+                        tableNumber: "2"
+                    },
+                    {
+                        partyID: "2",
+                        tableNumber: "3"
+                    }
+                  ];
     let items = [
                         {
                             id: "1",
@@ -12,7 +22,7 @@ router.get("/", (req, res) => {
                             name: "icecream"
                         }
                  ]; 
-    res.render('pos/register', {items: items});
+    res.render('pos/register', {parties: parties, items: items});
 
 });
 
