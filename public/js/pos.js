@@ -1,7 +1,10 @@
 let item = document.getElementsByClassName("item");
+let party = document.getElementsByClassName("party");
 let orderList = document.getElementById("orderList");
 let submitButton = document.getElementById("submitOrder");
+let partyIdHTML = document.getElementById("partyId");
 let currentOrder = [];
+let partyID = "none";
 
 let pushToOrder = (id, name) => {
     currentOrder.push(id);
@@ -25,6 +28,24 @@ let deleteItem = (listItem) => {
     let index =  nodes.indexOf(listItem);
     orderList.removeChild(listItem);
     currentOrder.splice(index, 1);
+}
+
+
+let changePartySelected = (id) => {
+    if(id == partyID) {
+        partyID = "none";
+    } else {
+        partyID = id
+    }
+    console.log(partyID);
+    partyIdHTML.innerHTML = partyID;
+}
+
+if(party) {
+    for(let i = 0; i < party.length; i++) {
+        let id = party[i].getElementsByClassName("id")[0].innerHTML;
+        party[i].addEventListener('click', () => {changePartySelected(id)}, false);
+    }
 }
 
 if(item) {

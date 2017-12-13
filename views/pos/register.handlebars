@@ -2,15 +2,22 @@
     <article id="parties">
         {{#each parties}}
             <button class="party">
-                <p class="id">Party ID: {{this.partyID}}</p>
-                <p class="name">Party Table: {{this.tableNumber}}</p>
+                <p>Party ID:</p>
+                <p class="id">{{this.partyID}}</p>
+                <p>Party Table</p>
+                <p class="name">{{this.tableNumber}}</p>
             </button>
         {{/each}}
+        <div>
+            <p>Editing order of party: </p>
+            <p id="partyId"></p>
+        </div>
     </article>
     <article id="items">
         {{#each items}}
             <button class="item">
-                <p class="id">Item ID: {{this.id}}</p>
+                <p>Item ID:</p>
+                <p class="id">{{this.id}}</p>
                 <p class="name">{{this.name}}</p>
             </button>
         {{/each}} 
