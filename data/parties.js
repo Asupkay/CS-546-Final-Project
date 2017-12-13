@@ -40,7 +40,7 @@ let exportedMethods = {
         const party = await partiesCollection.findOne({ partyId: partyId });
 
         try {
-            const order = makeOrder(itemIds);
+            const order = await makeOrder(itemIds);
             party.orders.push(order);            
         } catch (error) {
             throw "There was an error trying to push the orders to the party";
