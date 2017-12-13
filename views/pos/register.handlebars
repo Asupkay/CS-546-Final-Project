@@ -10,12 +10,12 @@
             </button>
         {{/each}}
         <div>
-            <p>Making order for party: </p>
-            <p id="partyId">New</p>
+            <p class="d-inline">Making order for party: </p>
+            <p id="partyId" class="d-inline">New</p>
         </div>
     </article>
-    <div>
-        <article id="items">
+    <div class="row">
+        <article id="items" class="col">
             {{#each items}} 
                 <button class="item">
                     <p>Item ID:</p>
@@ -24,7 +24,7 @@
                 </button>
             {{/each}} 
         </article>
-        <article id="orderLog">
+        <article id="orderLog" class="col">
             <ul id="orderList">
             </ul>
         </article>
