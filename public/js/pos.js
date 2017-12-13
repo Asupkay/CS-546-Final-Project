@@ -3,6 +3,7 @@ let party = document.getElementsByClassName("party");
 let orderList = document.getElementById("orderList");
 let submitButton = document.getElementById("submitOrder");
 let partyIdHTML = document.getElementById("partyId");
+let tableNumberInput = document.getElementById("tableNumberInput");
 let currentOrder = [];
 let partyId = "New";
 
@@ -44,8 +45,10 @@ let deleteItem = (listItem) => {
 let changePartySelected = (id) => {
     if(id == partyId) {
         partyId = "New";
+        tableNumberInput.style.visibility = "visible"
     } else {
         partyId = id
+        tableNumberInput.style.visibility = "hidden"
     }
     partyIdHTML.innerHTML = partyId;
 }

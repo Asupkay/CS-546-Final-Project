@@ -17,9 +17,11 @@ router.post('/', async (req, res) => {
     let orderInfo = req.body;
 
     if(orderInfo.partyId != "New") {
-        await partiesData.addOrder(orderInfo.partyID, orderInfo.itemIDs);
+        console.log(orderInfo);
+        await partiesData.addOrder(orderInfo.partyId, orderInfo.itemIds);
     } else {
-        //TODO: Make new party and then push the order        
+        //TODO: Make new party and then push the order
+                
     }
 
     let parties = await partiesData.getAllParties();
