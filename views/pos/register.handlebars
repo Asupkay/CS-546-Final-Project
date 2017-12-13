@@ -3,13 +3,18 @@
         {{#each parties}}
             <button id="{{this.partyId}}" class="party btn btn-primary">
                 <p class="d-inline">Party Table:</p>
-                <p class="name d-inline">{{this.tableNumber}}</p>
+                <p class="number d-inline">{{this.tableNumber}}</p>
+                </br>
+                <p class="d-inline">Server:</p>
+                <p class="name d-inline">{{this.serverName}}</p>
             </button>
         {{/each}}
         <div>
             <div class="d-inline">
-                <p class="d-inline">Making order for party: </p>
-                <p id="partyId" class="d-inline">New</p>
+                <p class="d-inline">Making order for table number: </p>
+                <p id="partyTableNumber" class="d-inline">New</p>
+                <p class="d-inline">Server: </p>
+                <p id="partyServerName" class="d-inline">{{user.username}}</p>
             </div>
             <div id="tableNumberInput" class="d-inline">
                 <input type="text" placeholder="Table Number">

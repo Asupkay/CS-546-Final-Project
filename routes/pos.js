@@ -7,8 +7,10 @@ const itemsData = data.items;
 router.get("/", async (req, res) => {
     let parties = await partiesData.getAllParties();
     let items = await itemsData.getAllItems();
-    console.log(items);
-    res.render('pos/register', {parties: parties, items: items});
+    let user = {
+        username: "Alex"
+    }
+    res.render('pos/register', {parties: parties, items: items, user: user});
 
 });
 
@@ -26,8 +28,11 @@ router.post('/', async (req, res) => {
 
     let parties = await partiesData.getAllParties();
     let items = await itemsData.getAllItems();
+    let user = {
+        username: "Alex"
+    }
 
-    res.render('pos/register', {parties: parties, items: items});
+    res.render('pos/register', {parties: parties, items: items, user: user});
 });
 
 module.exports = router;

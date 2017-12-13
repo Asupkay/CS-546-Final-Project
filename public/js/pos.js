@@ -42,7 +42,7 @@ let deleteItem = (listItem) => {
 }
 
 
-let changePartySelected = (id) => {
+let changePartySelected = (id, partyTblNumber, partyServer) => {
     if(id == partyId) {
         partyId = "New";
         tableNumberInput.style.visibility = "visible"
@@ -50,13 +50,18 @@ let changePartySelected = (id) => {
         partyId = id
         tableNumberInput.style.visibility = "hidden"
     }
-    partyIdHTML.innerHTML = partyId;
+    partyTableHTML.innerHTML = partyTblNumber;
+    partyServerHTML.innerHTML = partyServer;
 }
 
 if(party) {
     for(let i = 0; i < party.length; i++) {
         let id = party[i].id;
-        party[i].addEventListener('click', () => {changePartySelected(id)}, false);
+        let partyTableNumber = party[i].getElementsByClassName("number")[0].innerHTML;
+        let partyServer = party[i].getElementsByClassName("name")[0].innerHTML;
+        console.log(partyTableNumber);
+        console.log(partyServer);
+        party[i].addEventListener('click', () => {changePartySelected(id, partyTableNumber, partyServer)}, false);
     }
 }
 
