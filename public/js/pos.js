@@ -4,7 +4,7 @@ let orderList = document.getElementById("orderList");
 let submitButton = document.getElementById("submitOrder");
 let partyIdHTML = document.getElementById("partyId");
 let currentOrder = [];
-let partyID = "new";
+let partyId = "new";
 
 let pushToOrder = (id, name) => {
     currentOrder.push(id);
@@ -17,8 +17,8 @@ let pushToOrder = (id, name) => {
 let sendOrder = () => {
     if(currentOrder.length > 0) {
         let order = {
-            partyID: partyID,
-            itemIDs: currentOrder
+            partyId: partyId,
+            itemIds: currentOrder
         }
 
         let xhttp = new XMLHttpRequest();
@@ -37,13 +37,12 @@ let deleteItem = (listItem) => {
 
 
 let changePartySelected = (id) => {
-    if(id == partyID) {
-        partyID = "new";
+    if(id == partyId) {
+        partyId = "New";
     } else {
-        partyID = id
+        partyId = id
     }
-    console.log(partyID);
-    partyIdHTML.innerHTML = partyID;
+    partyIdHTML.innerHTML = partyId;
 }
 
 if(party) {
