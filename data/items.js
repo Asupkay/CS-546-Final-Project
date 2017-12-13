@@ -32,9 +32,9 @@ let exportedMethods = {
             price: p,
         };
     
-        const newInsertInformation = await recipesCollection.insertOne(newItem);
+        const newInsertInformation = await itemsCollection.insertOne(newItem);
         const newId = newInsertInformation.insertedId;
-        return await this.getItemById(newId);
+        //return await this.getItemById(newId);
     }
 }
 

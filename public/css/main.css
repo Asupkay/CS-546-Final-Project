@@ -1,0 +1,57 @@
+p {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 10px;
+}
+
+body {
+    background-color: cyan;
+    font-family: "Courier New", Courier, monospace;
+}
+
+html, body {
+    height: 100%;
+}
+main {
+    min-height: 90%;
+    background: rgb(129, 10, 199);
+}
+main:after {
+    content: "";
+    display: block;
+    height: 100px;
+}
+footer {
+    height: 10%;
+    background: rgb(109, 111, 228);
+}
+.footer {
+    float: right;
+    padding-right: 10px;
+}
+
+.hidden {
+	display: none;
+}
+
+.form-control {
+    width: 20%;
+}
+
+.container {
+    padding-top: 5%;
+    text-align: center;
+}
+
+.item{
+    border-radius: 15px;
+    color: rgb(236, 134, 17);
+    background-color: rgb(32, 112, 218);
+    font-size: 20px;
+}
+
+.party{
+    border-radius: 15px;
+    color: rgb(17, 130, 236);
+    background-color: rgb(32, 112, 218);
+    font-size: 20px;
+}

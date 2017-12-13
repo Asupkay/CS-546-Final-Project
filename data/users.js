@@ -16,7 +16,6 @@ let exportedMethods = {
         const newUser = {
             _id: uuid.v4(),
             username: name,
-            password: pass,
             hashedPassword: await bcrypt.hashSync(pass, salt),
             Role: role
         };
@@ -33,6 +32,12 @@ let exportedMethods = {
     
         if (!user) throw "Item not found";
         return user;
+    },
+
+    async getAllUsers() {
+        const usersCollection = await users();
+        var temp = await usersCollection.find({}).toArray();
+        return temp;
     }
 }
 
