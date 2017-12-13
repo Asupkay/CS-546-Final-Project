@@ -5,7 +5,6 @@ const partiesData = data.parties;
 
 router.get('/', (req, res) => {
   //let parties = partiesData.getAllParties();
-
   let parties = [
                   {
                     partyId: "1",
@@ -70,6 +69,13 @@ router.get('/', (req, res) => {
                 ];
 
   res.render('queue/parties', {parties: parties});
+});
+
+//post a number to delete an order from the queue
+router.post('/', async (req, res) => {
+    let orderInfo = req.body;
+
+    await partiesData.deleteOrder(req.body.orderId);
 });
 
 module.exports = router;
