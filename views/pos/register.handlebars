@@ -1,7 +1,7 @@
 <div>
     <article id="parties">
         {{#each parties}}
-            <button class="party btn btn-info">
+            <button class="party btn btn-primary">
                 <p class="d-inline">Party ID:</p>
                 <p class="id d-inline">{{this.partyId}}</p>
                 <br/>
@@ -17,10 +17,8 @@
     <div class="row">
         <article id="items" class="col">
             {{#each items}} 
-                <button class="item">
-                    <p>Item ID:</p>
-                    <p class="id">{{this.id}}</p>
-                    <p class="name">{{this.name}}</p>
+                <button id="{{this.itemId}}" class="item btn btn-secondary" >
+                    {{this.itemName}}
                 </button>
             {{/each}} 
         </article>
