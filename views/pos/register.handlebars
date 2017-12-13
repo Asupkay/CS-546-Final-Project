@@ -1,8 +1,16 @@
 <div>
+    <article id="parties">
+        {{#each parties}}
+            <button class="party">
+                <p class="id">Party ID: {{this.partyID}}</p>
+                <p class="name">Party Table: {{this.tableNumber}}</p>
+            </button>
+        {{/each}}
+    </article>
     <article id="items">
         {{#each items}}
             <button class="item">
-                <p class="id">{{this.id}}</p>
+                <p class="id">Item ID: {{this.id}}</p>
                 <p class="name">{{this.name}}</p>
             </button>
         {{/each}} 
