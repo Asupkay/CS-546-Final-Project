@@ -20,7 +20,7 @@ let sendOrder = () => {
             partyId: partyId,
             itemIds: currentOrder
         }
-        console.log(order);
+
         while(orderList.hasChildNodes()) {
             orderList.removeChild(orderList.lastChild);
         }

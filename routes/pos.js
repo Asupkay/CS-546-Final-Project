@@ -16,11 +16,16 @@ router.get("/", async (req, res) => {
 router.post('/', async (req, res) => {
     let orderInfo = req.body;
 
-    if(orderInfo.partyId) {
+    if(orderInfo.partyId != "New") {
         await partiesData.addOrder(orderInfo.partyID, orderInfo.itemIDs);
     } else {
         //TODO: Make new party and then push the order        
     }
+
+    let parties = await partiesData.getAllParties();
+    let items = await itemsData.getAllItems();
+
+    res.render('pos/register', {parties: parties, items: items});
 });
 
 module.exports = router;
