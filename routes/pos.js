@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const data = require("../data");
+const partiesData = data.parties;
 
 router.get("/", (req, res) => {
     let parties = [
@@ -26,13 +28,14 @@ router.get("/", (req, res) => {
 
 });
 
-router.post('/', (req, res) => {
-    console.log(req.body);
-    if (req.user) {
-        console.log("here2");
-        let order = req.body.order;
+//TODO: NEED TO CHECK USER HERE BUT DONT KNOW IF IT WILL WORK
+router.post('/', async (req, res) => {
+    let orderInfo = req.body;
 
-        //TODO: Push to database here
+    if(orderInfo.partyID) {
+        await partiesData.addOrder(orderInfo.partyID, orderInfo.itemIDs);
+    } else {
+        //TODO: Make new party and then push the order        
     }
 });
 

@@ -18,7 +18,7 @@ let sendOrder = () => {
     if(currentOrder.length > 0) {
         let order = {
             partyID: partyID,
-            itemIds: currentOrder
+            itemIDs: currentOrder
         }
 
         let xhttp = new XMLHttpRequest();
