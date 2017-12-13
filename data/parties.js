@@ -31,14 +31,16 @@ let exportedMethods = {
 
     //push order to party
     async addOrder(partyId, itemIds) {
+        console.log(partyId);
+        console.log(typeof partyId);
         if (typeof partyId !== "string") throw "The Party Id is of the wrong type."
         if (!Array.isArray(itemIds)) throw "ItemIds of wrong type.";
 
         const partiesCollection = await parties();
-        const party = await partiesCollection.findOne({ partyId: id });
+        const party = await partiesCollection.findOne({ partyId: partyId });
 
         try {
-            const order = makeOrder(itemIds);
+            const order = await makeOrder(itemIds);
             party.orders.push(order);            
         } catch (error) {
             throw "There was an error trying to push the orders to the party";
@@ -48,10 +50,10 @@ let exportedMethods = {
 
     //create new party
     async addParty(sName, tNum) {
-        if (typeof name !== "string") throw "No name provided";
-        if (typeof p !== "number") throw "No price provided";
+        if (typeof sName !== "string") throw "No name provided";
+        if (typeof tNum !== "number") throw "No price provided";
     
-        const partyCollection = await party();
+        const partyCollection = await parties();
     
         const newParty = {
             partyId: uuid.v4(),
@@ -68,7 +70,7 @@ let exportedMethods = {
     async removeParty(id) {
         if (!id || typeof name !== "id") throw "No id provided";
         
-        const partyCollection = await party();
+        const partyCollection = await parties();
         const deletionInfo = await partyCollection.removeOne({ _id: id });
         
 

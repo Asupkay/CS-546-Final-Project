@@ -2,31 +2,12 @@ const express = require("express");
 const router = express.Router();
 const data = require("../data");
 const partiesData = data.parties;
-//const itemsData = data.items;
+const itemsData = data.items;
 
-router.get("/", (req, res) => {
-    //let parties = partiesData.getAllParties();
-    //let items = itemsData.getAllItems();
-    let parties = [
-                    {
-                        partyId: "1",
-                        tableNumber: "2"
-                    },
-                    {
-                        partyId: "2",
-                        tableNumber: "3"
-                    }
-                  ];
-    let items = [
-                        {
-                            itemId: "1",
-                            name: "burger"
-                        },
-                        {
-                            itemId: "2",
-                            name: "icecream"
-                        }
-                 ]; 
+router.get("/", async (req, res) => {
+    let parties = await partiesData.getAllParties();
+    let items = await itemsData.getAllItems();
+    console.log(items);
     res.render('pos/register', {parties: parties, items: items});
 
 });
@@ -35,11 +16,18 @@ router.get("/", (req, res) => {
 router.post('/', async (req, res) => {
     let orderInfo = req.body;
 
-    if(orderInfo.partyId) {
-        await partiesData.addOrder(orderInfo.partyID, orderInfo.itemIDs);
+    if(orderInfo.partyId != "New") {
+        console.log(orderInfo);
+        await partiesData.addOrder(orderInfo.partyId, orderInfo.itemIds);
     } else {
-        //TODO: Make new party and then push the order        
+        //TODO: Make new party and then push the order
+                
     }
+
+    let parties = await partiesData.getAllParties();
+    let items = await itemsData.getAllItems();
+
+    res.render('pos/register', {parties: parties, items: items});
 });
 
 module.exports = router;

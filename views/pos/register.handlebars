@@ -1,26 +1,26 @@
 <div>
     <article id="parties">
         {{#each parties}}
-            <button class="party btn btn-info">
-                <p class="d-inline">Party ID:</p>
-                <p class="id d-inline">{{this.partyId}}</p>
-                <br/>
+            <button id="{{this.partyId}}" class="party btn btn-primary">
                 <p class="d-inline">Party Table:</p>
                 <p class="name d-inline">{{this.tableNumber}}</p>
             </button>
         {{/each}}
         <div>
-            <p class="d-inline">Making order for party: </p>
-            <p id="partyId" class="d-inline">New</p>
+            <div class="d-inline">
+                <p class="d-inline">Making order for party: </p>
+                <p id="partyId" class="d-inline">New</p>
+            </div>
+            <div id="tableNumberInput" class="d-inline">
+                <input type="text" placeholder="Table Number">
+            </div>
         </div>
     </article>
     <div class="row">
         <article id="items" class="col">
             {{#each items}} 
-                <button class="item">
-                    <p>Item ID:</p>
-                    <p class="id">{{this.id}}</p>
-                    <p class="name">{{this.name}}</p>
+                <button id="{{this.itemId}}" class="item btn btn-secondary" >
+                    {{this.itemName}}
                 </button>
             {{/each}} 
         </article>
@@ -29,5 +29,5 @@
             </ul>
         </article>
     </div>
-    <button id="submitOrder">Submit</button>
+    <button id="submitOrder" class="btn btn-primary float-right">Submit</button>
 </div>
