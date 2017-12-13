@@ -21,6 +21,11 @@ let sendOrder = () => {
             itemIds: currentOrder
         }
 
+        while(orderList.hasChildNodes()) {
+            orderList.removeChild(orderList.lastChild);
+        }
+        currentOrder = [];
+
         let xhttp = new XMLHttpRequest();
         xhttp.open("POST", "/pos", true);
         xhttp.setRequestHeader("Content-type", "application/json");
