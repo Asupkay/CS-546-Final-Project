@@ -4,7 +4,7 @@ let orderList = document.getElementById("orderList");
 let submitButton = document.getElementById("submitOrder");
 let partyIdHTML = document.getElementById("partyId");
 let currentOrder = [];
-let partyId = "new";
+let partyId = "New";
 
 let pushToOrder = (id, name) => {
     currentOrder.push(id);
@@ -52,15 +52,15 @@ let changePartySelected = (id) => {
 
 if(party) {
     for(let i = 0; i < party.length; i++) {
-        let id = party[i].getElementsByClassName("id")[0].innerHTML;
+        let id = party[i].id;
         party[i].addEventListener('click', () => {changePartySelected(id)}, false);
     }
 }
 
 if(item) {
     for(let i = 0; i < item.length; i++) {
-        let id = item[i].getElementsByClassName("id")[0].innerHTML;
-        let name = item[i].getElementsByClassName("name")[0].innerHTML;
+        let id = item[i].id;
+        let name = item[i].innerHTML;
         item[i].addEventListener('click', () => {pushToOrder(id, name)}, false);
     } 
 }
