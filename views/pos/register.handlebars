@@ -1,11 +1,12 @@
 <div>
     <article id="parties">
         {{#each parties}}
-            <button class="party">
-                <p>Party ID:</p>
-                <p class="id">{{this.partyId}}</p>
-                <p>Party Table</p>
-                <p class="name">{{this.tableNumber}}</p>
+            <button class="party btn btn-info">
+                <p class="d-inline">Party ID:</p>
+                <p class="id d-inline">{{this.partyId}}</p>
+                <br/>
+                <p class="d-inline">Party Table:</p>
+                <p class="name d-inline">{{this.tableNumber}}</p>
             </button>
         {{/each}}
         <div>
@@ -13,18 +14,20 @@
             <p id="partyId">New</p>
         </div>
     </article>
-    <article id="items">
-        {{#each items}}
-            <button class="item">
-                <p>Item ID:</p>
-                <p class="id">{{this.id}}</p>
-                <p class="name">{{this.name}}</p>
-            </button>
-        {{/each}} 
-    </article>
-    <article id="orderLog">
-        <ul id="orderList">
-        </ul>
-    </article>
+    <div>
+        <article id="items">
+            {{#each items}} 
+                <button class="item">
+                    <p>Item ID:</p>
+                    <p class="id">{{this.id}}</p>
+                    <p class="name">{{this.name}}</p>
+                </button>
+            {{/each}} 
+        </article>
+        <article id="orderLog">
+            <ul id="orderList">
+            </ul>
+        </article>
+    </div>
     <button id="submitOrder">Submit</button>
 </div>
