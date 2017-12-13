@@ -31,11 +31,13 @@ let exportedMethods = {
 
     //push order to party
     async addOrder(partyId, itemIds) {
+        console.log(partyId);
+        console.log(typeof partyId);
         if (typeof partyId !== "string") throw "The Party Id is of the wrong type."
         if (!Array.isArray(itemIds)) throw "ItemIds of wrong type.";
 
         const partiesCollection = await parties();
-        const party = await partiesCollection.findOne({ partyId: id });
+        const party = await partiesCollection.findOne({ partyId: partyId });
 
         try {
             const order = makeOrder(itemIds);
