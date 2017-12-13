@@ -5,7 +5,6 @@ const partiesData = data.parties;
 
 router.get('/', (req, res) => {
   //let parties = partiesData.getAllParties();
-  //let items = itemsData.getAllItems();
 
   let parties = [
                   {
@@ -70,11 +69,7 @@ router.get('/', (req, res) => {
                   }
                 ];
 
-  ///partyData.getAllParties().then((partyList) => {
-  //      res.json(partyList);
-  //  }).catch((e) => {
-  //      res.status(500).json({ error: e });
-  //  });
+  res.render('queue/parties', {parties: parties});
 });
 
 module.exports = router;
