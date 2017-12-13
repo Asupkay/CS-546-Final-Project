@@ -1,24 +1,26 @@
 <div>
     <article id="parties" class="container">
         {{#each parties}}
-            <div class="row party">
-                <div class="container">
-                    <p>Party ID: {{this.partyId}}</p>
-                    <p class="tableNumber">Table {{this.tableNumber}}</p>
-                    <div id="orderList" class="row">
-                        {{#each this.orders}}
-                            <div class="col">
-                                <p class="orderId">Order: {{this.orderId}}</p>
-                                <p>items</p>
-                                {{#each this.items}}
-                                    <p class="itemId">{{this.itemName}}</p>
-                                {{/each}}
-                                <button id="{{this.orderId}} orderSubmit">Complete Order</button>
-                            </div>
-                        {{/each}}
+            {{#if this.orders.length}}
+                <div class="row">
+                    <div class="container">
+                        <p>Party ID: {{this.partyId}}</p>
+                        <p class="tableNumber">Table {{this.tableNumber}}</p>
+                        <div id="orderList" class="row">
+                            {{#each this.orders}}
+                                <div class="col">
+                                    <p class="orderId">Order: {{this.orderId}}</p>
+                                    <p>items</p>
+                                    {{#each this.items}}
+                                        <p class="itemId">{{this.itemName}}</p>
+                                    {{/each}}
+                                    <button class="deleteOrder" type="button" value="{{this.orderId}}">Complete Order</button>
+                                </div>
+                            {{/each}}
+                        </div>
                     </div>
                 </div>
-            </div>
+            {{/if}}
         {{/each}}
     </article>
 </div>

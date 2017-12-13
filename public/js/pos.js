@@ -65,4 +65,6 @@ if(item) {
     } 
 }
 
-submitButton.addEventListener('click', sendOrder, false); 
+if(submitButton){
+    submitButton.addEventListener('click', sendOrder, false); 
+}
