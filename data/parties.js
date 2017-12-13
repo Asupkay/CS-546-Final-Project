@@ -48,10 +48,10 @@ let exportedMethods = {
 
     //create new party
     async addParty(sName, tNum) {
-        if (typeof name !== "string") throw "No name provided";
-        if (typeof p !== "number") throw "No price provided";
+        if (typeof sName !== "string") throw "No name provided";
+        if (typeof tNum !== "number") throw "No price provided";
     
-        const partyCollection = await party();
+        const partyCollection = await parties();
     
         const newParty = {
             partyId: uuid.v4(),
@@ -68,7 +68,7 @@ let exportedMethods = {
     async removeParty(id) {
         if (!id || typeof name !== "id") throw "No id provided";
         
-        const partyCollection = await party();
+        const partyCollection = await parties();
         const deletionInfo = await partyCollection.removeOne({ _id: id });
         
 
