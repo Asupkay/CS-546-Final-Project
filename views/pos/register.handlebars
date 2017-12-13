@@ -1,10 +1,7 @@
 <div>
     <article id="parties">
         {{#each parties}}
-            <button class="party btn btn-primary">
-                <p class="d-inline">Party ID:</p>
-                <p class="id d-inline">{{this.partyId}}</p>
-                <br/>
+            <button id="{{this.partyId}}" class="party btn btn-primary">
                 <p class="d-inline">Party Table:</p>
                 <p class="name d-inline">{{this.tableNumber}}</p>
             </button>

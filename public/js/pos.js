@@ -52,7 +52,7 @@ let changePartySelected = (id) => {
 
 if(party) {
     for(let i = 0; i < party.length; i++) {
-        let id = party[i].getElementsByClassName("id")[0].innerHTML;
+        let id = party[i].id;
         party[i].addEventListener('click', () => {changePartySelected(id)}, false);
     }
 }
