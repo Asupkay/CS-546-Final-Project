@@ -37,27 +37,53 @@ let exportedMethods = {
     },
 
     //remove an order from a party, loop through all the parties.
-    async removeOrder(id){
+    async completeOrder(id){
+        if(typeof id !== "string") throw "The id you provided is not a string.";
 
+        const partiesCollection = await parties();
+        var allOurParties = this.getAllParties();
+        for (let i = 0; i < allOurParties.length; i++) {
+            for (let index = 0; index < allOurParties[i].orders.length; index++) {
+                const element = allOurParties[i].orders[index];
+                if(element.orderId === id) element.isCompleted = true;
+            }
+        }
+        
     },
 
     //push order to party
-    async addOrder(partyId, itemIds) {
-        // console.log(partyId);
-        // console.log(typeof partyId);
-        if (typeof partyId !== "string") throw "The Party Id is of the wrong type."
+    async addOrder(id, itemIds) {
+        // console.log(id);
+        // console.log(typeof id);
+        if (typeof id !== "string") throw "The Party Id is of the wrong type.";
         if (!Array.isArray(itemIds)) throw "ItemIds of wrong type.";
 
         const partiesCollection = await parties();
-        const party = await partiesCollection.findOne({ partyId: partyId });
+        const party = await partiesCollection.findOne({ partyId: id });
         var order = null;
+        var updatedParty = {};
+        
+
         try {
             order = await makeOrder(itemIds);
             //console.log(order);
-            party.orders.push(order);            
+            party.orders.push(order);
+            //updatedParty.orders.push(order);
+            console.log(party);            
         } catch (error) {
             throw "There was an error trying to push the orders to the party";
         }
+        updatedParty.serverName = party.serverName;
+        updatedParty.partyId = id;
+        updatedParty.tableNumber = party.tableNumber;
+        updatedParty.orders = party.orders;
+        let updateCommand = {
+            $set: updatedParty
+        };
+        const query = {
+            partyId: id
+        };
+        await partiesCollection.updateOne(query, updateCommand);
         return order;
     },
 
