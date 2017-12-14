@@ -48,10 +48,14 @@ footer {
     background-color: rgb(32, 112, 218);
     font-size: 20px;
 }
+*/
 
 .party{
-    border-radius: 15px;
-    color: rgb(17, 130, 236);
-    background-color: rgb(32, 112, 218);
-    font-size: 20px;
-}*/
+    margin: 5px;
+    width: 15%;
+    min-width: 150px;
+}
+
+.party > p {
+    font-size: calc(8px + .5vw);
+}
