@@ -7,9 +7,16 @@ var timestamp = require('time-stamp');
 
 async function makeOrder(ids) {
     var order = [];
-    ids.forEach(element => {
-        order.push(itemsData.getItemById(element));
-    });
+
+    for (var i = 0; i < ids.length; i++) {
+        // console.log(typeof ids[i]);
+        // console.log(ids[i]);        
+        var temp = await itemsData.getItemById(ids[i]);
+        //console.log(temp);
+        order.push(temp); 
+    }
+    //console.log("This is our order");
+    //console.log(order);
 
     const newOrder = {
         orderId: uuid.v4(),
@@ -19,7 +26,7 @@ async function makeOrder(ids) {
     };
 
     return newOrder;
-};
+}
 
 let exportedMethods = {
     //get all the parties
@@ -29,18 +36,24 @@ let exportedMethods = {
         return temp;
     },
 
+    //remove an order from a party, loop through all the parties.
+    async removeOrder(id){
+
+    },
+
     //push order to party
     async addOrder(partyId, itemIds) {
-        console.log(partyId);
-        console.log(typeof partyId);
+        // console.log(partyId);
+        // console.log(typeof partyId);
         if (typeof partyId !== "string") throw "The Party Id is of the wrong type."
         if (!Array.isArray(itemIds)) throw "ItemIds of wrong type.";
 
         const partiesCollection = await parties();
         const party = await partiesCollection.findOne({ partyId: partyId });
-
+        var order = null;
         try {
-            const order = await makeOrder(itemIds);
+            order = await makeOrder(itemIds);
+            //console.log(order);
             party.orders.push(order);            
         } catch (error) {
             throw "There was an error trying to push the orders to the party";
@@ -72,8 +85,6 @@ let exportedMethods = {
         
         const partyCollection = await parties();
         const deletionInfo = await partyCollection.removeOne({ _id: id });
-        
-
     }
 
     //add Order to Party
