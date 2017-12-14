@@ -67,9 +67,10 @@ let exportedMethods = {
         if (typeof tNum !== "number") throw "No table number provided";
     
         const partyCollection = await parties();
+        const newPartyId = uuid.v4()
     
         const newParty = {
-            partyId: uuid.v4(),
+            partyId: newPartyId,
             serverName: sName,
             tableNumber: tNum,
             orders: []
@@ -77,7 +78,7 @@ let exportedMethods = {
     
         const newInsertInformation = await partyCollection.insertOne(newParty);
         const newId = newInsertInformation.insertedId;
-        return newId;
+        return newPartyId;
     },
 
     async removeParty(id) {
