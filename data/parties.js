@@ -64,7 +64,7 @@ let exportedMethods = {
     //create new party
     async addParty(sName, tNum) {
         if (typeof sName !== "string") throw "No name provided";
-        if (typeof tNum !== "number") throw "No price provided";
+        if (typeof tNum !== "number") throw "No table number provided";
     
         const partyCollection = await parties();
     
