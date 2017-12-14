@@ -72,7 +72,7 @@ let exportedMethods = {
             //console.log(order);
             //party.orders.push(order);
             updatedParty.orders.push(order);
-            //console.log(party);            
+            console.log(updatedParty.orders);            
         } catch (error) {
             throw "There was an error trying to push the orders to the party";
         }
