@@ -24,7 +24,8 @@ async function makeOrder(ids) {
         isCompleted: false,
         items: order
     };
-
+    console.log("this is our new order");
+    console.log(newOrder);
     return newOrder;
 }
 
@@ -72,6 +73,7 @@ let exportedMethods = {
             //console.log(order);
             //party.orders.push(order);
             updatedParty.orders.push(order);
+            console.log("this is my updatedParty.orders");
             console.log(updatedParty.orders);            
         } catch (error) {
             throw "There was an error trying to push the orders to the party";
