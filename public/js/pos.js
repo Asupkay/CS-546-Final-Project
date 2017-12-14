@@ -25,11 +25,10 @@ let sendOrder = () => {
         if(partyTableHTML.innerHTML != ""){
             tableNumber = partyTableHTML.innerHTML;
         } else {
-            tableNumber = tableNumberInput.value;
+            tableNumber = parseInt(tableNumberInput.value);
         }
 
-        console.log(tableNumber);
-        if(tableNumber && typeof parseInt(tableNumber) == "number") { 
+        if(tableNumber && typeof tableNumber == "number") { 
             let order = {
                 partyId: partyId,
                 tableNumber: tableNumber,
