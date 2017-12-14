@@ -67,8 +67,8 @@ let exportedMethods = {
         try {
             order = await makeOrder(itemIds);
             //console.log(order);
-            party.orders.push(order);
-            //updatedParty.orders.push(order);
+            //party.orders.push(order);
+            updatedParty.orders.push(order);
             console.log(party);            
         } catch (error) {
             throw "There was an error trying to push the orders to the party";
@@ -76,7 +76,7 @@ let exportedMethods = {
         updatedParty.serverName = party.serverName;
         updatedParty.partyId = id;
         updatedParty.tableNumber = party.tableNumber;
-        updatedParty.orders = party.orders;
+        //updatedParty.orders = party.orders;
         let updateCommand = {
             $set: updatedParty
         };
