@@ -63,20 +63,20 @@ let exportedMethods = {
         var order = null;
         var updatedParty = {};
         
-
+        updatedParty.serverName = party.serverName;
+        updatedParty.partyId = id;
+        updatedParty.tableNumber = party.tableNumber;
+        updatedParty.orders = party.orders;
         try {
             order = await makeOrder(itemIds);
             //console.log(order);
             //party.orders.push(order);
             updatedParty.orders.push(order);
-            console.log(party);            
+            //console.log(party);            
         } catch (error) {
             throw "There was an error trying to push the orders to the party";
         }
-        updatedParty.serverName = party.serverName;
-        updatedParty.partyId = id;
-        updatedParty.tableNumber = party.tableNumber;
-        //updatedParty.orders = party.orders;
+        
         let updateCommand = {
             $set: updatedParty
         };
