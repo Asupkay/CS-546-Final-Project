@@ -43,16 +43,28 @@ let sendOrder = () => {
             }
             currentOrder = [];
 
-            let xhttp = new XMLHttpRequest();
-            xhttp.open("POST", "/pos", true);
-            xhttp.setRequestHeader("Content-type", "application/json");
-            xhttp.send(JSON.stringify(order));
+            sendData(order, (res) => {
+                console.log(document.documentElement);
+                window.location = res.response;
+            });
 
             tableNumberInput.value = "";
         } else {
             console.log("Not a number");
         }
     }
+}
+
+let sendData = (order, callback) => {
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if(this.readyState == 4 && this.status == 200) {
+            callback(this);
+        }
+    };
+    xhttp.open("POST", "/pos", true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send(JSON.stringify(order));
 }
 
 let deleteItem = (listItem) => {

@@ -34,8 +34,8 @@ router.post('/', async (req, res) => {
         username: "Alex"
     }
 
-    console.log("test");
-    res.redirect('/winner');
+    res.send('pos');
+    //res.render('pos/register', {parties: parties, items: items, user: user});
 });
 
 module.exports = router;
