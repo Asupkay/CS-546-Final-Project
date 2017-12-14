@@ -36,7 +36,6 @@ let sendOrder = () => {
                 itemIds: currentOrder
             }
 
-            console.log(order);
 
             while(orderList.hasChildNodes()) {
                 orderList.removeChild(orderList.lastChild);
@@ -44,7 +43,6 @@ let sendOrder = () => {
             currentOrder = [];
 
             sendData(order, (res) => {
-                console.log(document.documentElement);
                 window.location = res.response;
             });
 

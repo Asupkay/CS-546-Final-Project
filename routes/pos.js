@@ -19,16 +19,13 @@ router.post('/', async (req, res) => {
     let orderInfo = req.body;
 
     if(orderInfo.partyId != "New") {
-        console.log(orderInfo);
         await partiesData.addOrder(orderInfo.partyId, orderInfo.itemIds);
     } else {
-        console.log(orderInfo);
         let newPartyId = await partiesData.addParty(orderInfo.serverName, orderInfo.tableNumber);
         await partiesData.addOrder(newPartyId, orderInfo.itemIds);
     }
 
     let parties = await partiesData.getAllParties();
-    console.log(parties);
     let items = await itemsData.getAllItems();
     let user = {
         username: "Alex"
