@@ -42,14 +42,37 @@ let exportedMethods = {
         if(typeof id !== "string") throw "The id you provided is not a string.";
 
         const partiesCollection = await parties();
-        var allOurParties = this.getAllParties();
+        var allOurParties = await this.getAllParties();
+        var breakOut = fales;
+        var partyIdForQuery = null;
+
+        var updatedParty = {};
+
         for (let i = 0; i < allOurParties.length; i++) {
             for (let index = 0; index < allOurParties[i].orders.length; index++) {
-                const element = allOurParties[i].orders[index];
-                if(element.orderId === id) element.isCompleted = true;
+                if(allOurParties[i].orders[index].orderId === id) {
+                    //set our found party.isCompleted to true.
+                    allOurParties[i].orders[index].isCompleted = true;
+                    // to query for update
+                    partyIdForQuery = allOurParties[i].partyId; 
+                    //assign all the values to the party to be updated in the table.
+                    updatedParty.partyId = allOurParties[i].partyId;
+                    updatedParty.serverName = allOurParties[i].serverName;
+                    updatedParty.tableNumber = allOurParties[i].tableNumber;
+                    updatedParty.orders = allOurParties[i].orders;
+                    breakOut = true;
+                    break;
+                }
             }
+            if(breakOut) break;
         }
-        
+        let updateCommand = {
+            $set: updatedParty
+        };
+        const query = {
+            partyId: partyIdForQuery
+        };
+        await partiesCollection.updateOne(query, updateCommand);
     },
 
     //push order to party
