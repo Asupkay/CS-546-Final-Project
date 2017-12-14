@@ -23,7 +23,7 @@ let sendOrder = () => {
         let tableNumber;
         let serverName = partyServerHTML.innerHTML;
         if(partyTableHTML.innerHTML != ""){
-            tableNumber = partyTableHTML.innerHTML;
+            tableNumber = parseInt(partyTableHTML.innerHTML);
         } else {
             tableNumber = parseInt(tableNumberInput.value);
         }

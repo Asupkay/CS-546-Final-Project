@@ -24,16 +24,18 @@ router.post('/', async (req, res) => {
     } else {
         console.log(orderInfo);
         let newPartyId = await partiesData.addParty(orderInfo.serverName, orderInfo.tableNumber);
-        console.log(newPartyId); 
+        await partiesData.addOrder(newPartyId, orderInfo.itemIds);
     }
 
     let parties = await partiesData.getAllParties();
+    console.log(parties);
     let items = await itemsData.getAllItems();
     let user = {
         username: "Alex"
     }
 
-    res.render('pos/register', {parties: parties, items: items, user: user});
+    console.log("test");
+    res.redirect('/winner');
 });
 
 module.exports = router;
