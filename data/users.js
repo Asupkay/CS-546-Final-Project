@@ -35,6 +35,7 @@ let exportedMethods = {
     },
 
     async getUserByName(username) {
+        console.log(username);
         if(typeof username !== "string") throw "username must be of type string.";
         
         const usersCollection = await users();

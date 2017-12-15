@@ -3,12 +3,12 @@ const router = express.Router();
 const passport = require('passport');
 const JsonStrategy = require('passport-json').Strategy;
 const bcrypt = require('bcrypt-nodejs');
-const mongoCollections = require("../config/mongoCollections");
-const users = mongoCollections.users;
+const data = require("../data");
+const usersData = data.users;
 
 passport.use(new JsonStrategy(
   function(username, password, done) {
-    users.findUserByName({ username: username }, function (err, user) {
+    usersData.getUserByName({ username: username }, function (err, user) {
       if (err) { return done(err); }
       if (!user) { return done(null, false); }
       if (!user.verifyPassword(password)) { return done(null, false); }
@@ -22,7 +22,7 @@ passport.serializeUser(function(user, cb) {
 });
 
 passport.deserializeUser(function(id, cb) {
-  users.findUserByName(id).then((user) => {
+  usersData.getUserByName(id).then((user) => {
     if (!user) { return cb("error"); }
     cb(null, user);
   });
