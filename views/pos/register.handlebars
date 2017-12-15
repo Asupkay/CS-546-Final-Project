@@ -1,7 +1,7 @@
 <div>
     <article id="parties" class="text-center">
         {{#each parties}}
-            <button id="{{this.partyId}}" class="party btn btn-primary">
+            <button id="{{this.partyId}}" class="party btn">
                 <p class="d-inline">Party Table:</p>
                 <p class="number d-inline">{{this.tableNumber}}</p>
                 </br>
@@ -9,15 +9,12 @@
                 <p class="name d-inline">{{this.serverName}}</p>
             </button>
         {{/each}}
-        <div>
-            <div class="d-inline">
-                <p class="d-inline">Making order for table number: </p>
-                <p id="partyTableNumber" class="d-inline"></p>
-                <input id="tableNumberInput" type="text" placeholder="Table Number">
-                <p class="d-inline">Server: </p>
-                <p id="partyServerName" class="d-inline">{{user.username}}</p>
-            </div>
-
+        <div class="party-info">
+            <p class="d-inline">Making order for table number: </p>
+            <p id="partyTableNumber" class="d-inline"></p>
+            <input id="tableNumberInput" type="text" placeholder="Table #">
+            <p class="d-inline">Server: </p>
+            <p id="partyServerName" class="d-inline">{{user.username}}</p>
         </div>
     </article>
     <div class="row">

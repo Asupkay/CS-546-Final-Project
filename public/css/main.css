@@ -49,13 +49,62 @@ footer {
     font-size: 20px;
 }
 */
+html {
+    background-color: #323031;
+    height: 100%;
+}
 
-.party{
+#parties {
+    background-color: #323031;
+}
+
+
+
+.party {
+    background-color: #3D3B3C;
+    border-color: #7F7979;
+    color: #C1BDB3;
     margin: 5px;
     width: 15%;
     min-width: 150px;
 }
 
+.party:hover {
+    background-color: #7F7979;
+}
+
+.party-info {
+    padding: 5px 0px;
+    font-size: calc(12px + .5vw);
+    background-color: #3D3B3C;
+    color: #C1BDB3;
+}
+
+.party-info > input {
+    width: 50px;   
+}
+
 .party > p {
     font-size: calc(8px + .5vw);
+}
+
+#items {
+    background-color: #575556;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.item {
+    margin: 5px;
+}
+
+#orderLog {
+    background-color: #575556;
+}
+
+#orderList {
+    margin: 5px 0px;
+    background-color: white;
+    list-style-type: none;
+    padding-left: 5px;
 }
