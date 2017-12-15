@@ -19,11 +19,10 @@ router.post('/', async (req, res) => {
     let orderInfo = req.body;
 
     if(orderInfo.partyId != "New") {
-        console.log(orderInfo);
         await partiesData.addOrder(orderInfo.partyId, orderInfo.itemIds);
     } else {
-        //TODO: Make new party and then push the order
-                
+        let newPartyId = await partiesData.addParty(orderInfo.serverName, orderInfo.tableNumber);
+        await partiesData.addOrder(newPartyId, orderInfo.itemIds);
     }
 
     let parties = await partiesData.getAllParties();
@@ -32,7 +31,8 @@ router.post('/', async (req, res) => {
         username: "Alex"
     }
 
-    res.render('pos/register', {parties: parties, items: items, user: user});
+    res.send('pos');
+    //res.render('pos/register', {parties: parties, items: items, user: user});
 });
 
 module.exports = router;

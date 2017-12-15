@@ -24,7 +24,8 @@ async function makeOrder(ids) {
         isCompleted: false,
         items: order
     };
-
+    console.log("this is our new order");
+    console.log(newOrder);
     return newOrder;
 }
 
@@ -37,39 +38,90 @@ let exportedMethods = {
     },
 
     //remove an order from a party, loop through all the parties.
-    async removeOrder(id){
+    async completeOrder(id){
+        if(typeof id !== "string") throw "The id you provided is not a string.";
 
+        const partiesCollection = await parties();
+        var allOurParties = await this.getAllParties();
+        var breakOut = fales;
+        var partyIdForQuery = null;
+
+        var updatedParty = {};
+
+        for (let i = 0; i < allOurParties.length; i++) {
+            for (let index = 0; index < allOurParties[i].orders.length; index++) {
+                if(allOurParties[i].orders[index].orderId === id) {
+                    //set our found party.isCompleted to true.
+                    allOurParties[i].orders[index].isCompleted = true;
+                    // to query for update
+                    partyIdForQuery = allOurParties[i].partyId; 
+                    //assign all the values to the party to be updated in the table.
+                    updatedParty.partyId = allOurParties[i].partyId;
+                    updatedParty.serverName = allOurParties[i].serverName;
+                    updatedParty.tableNumber = allOurParties[i].tableNumber;
+                    updatedParty.orders = allOurParties[i].orders;
+                    breakOut = true;
+                    break;
+                }
+            }
+            if(breakOut) break;
+        }
+        let updateCommand = {
+            $set: updatedParty
+        };
+        const query = {
+            partyId: partyIdForQuery
+        };
+        await partiesCollection.updateOne(query, updateCommand);
     },
 
     //push order to party
-    async addOrder(partyId, itemIds) {
-        // console.log(partyId);
-        // console.log(typeof partyId);
-        if (typeof partyId !== "string") throw "The Party Id is of the wrong type."
+    async addOrder(id, itemIds) {
+        // console.log(id);
+        // console.log(typeof id);
+        if (typeof id !== "string") throw "The Party Id is of the wrong type.";
         if (!Array.isArray(itemIds)) throw "ItemIds of wrong type.";
 
         const partiesCollection = await parties();
-        const party = await partiesCollection.findOne({ partyId: partyId });
+        const party = await partiesCollection.findOne({ partyId: id });
         var order = null;
+        var updatedParty = {};
+        
+        updatedParty.serverName = party.serverName;
+        updatedParty.partyId = id;
+        updatedParty.tableNumber = party.tableNumber;
+        updatedParty.orders = party.orders;
         try {
             order = await makeOrder(itemIds);
             //console.log(order);
-            party.orders.push(order);            
+            //party.orders.push(order);
+            updatedParty.orders.push(order);
+            console.log("this is my updatedParty.orders");
+            console.log(updatedParty.orders);            
         } catch (error) {
             throw "There was an error trying to push the orders to the party";
         }
+        
+        let updateCommand = {
+            $set: updatedParty
+        };
+        const query = {
+            partyId: id
+        };
+        await partiesCollection.updateOne(query, updateCommand);
         return order;
     },
 
     //create new party
     async addParty(sName, tNum) {
         if (typeof sName !== "string") throw "No name provided";
-        if (typeof tNum !== "number") throw "No price provided";
+        if (typeof tNum !== "number") throw "No table number provided";
     
         const partyCollection = await parties();
+        const newPartyId = uuid.v4()
     
         const newParty = {
-            partyId: uuid.v4(),
+            partyId: newPartyId,
             serverName: sName,
             tableNumber: tNum,
             orders: []
@@ -77,7 +129,7 @@ let exportedMethods = {
     
         const newInsertInformation = await partyCollection.insertOne(newParty);
         const newId = newInsertInformation.insertedId;
-        return newId;
+        return newPartyId;
     },
 
     async removeParty(id) {

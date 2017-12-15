@@ -2,10 +2,12 @@ let item = document.getElementsByClassName("item");
 let party = document.getElementsByClassName("party");
 let orderList = document.getElementById("orderList");
 let submitButton = document.getElementById("submitOrder");
-let partyIdHTML = document.getElementById("partyId");
+let partyTableHTML = document.getElementById("partyTableNumber");
+let partyServerHTML = document.getElementById("partyServerName");
 let tableNumberInput = document.getElementById("tableNumberInput");
 let currentOrder = [];
 let partyId = "New";
+let username = partyServerHTML.innerHTML;
 
 let pushToOrder = (id, name) => {
     currentOrder.push(id);
@@ -16,22 +18,51 @@ let pushToOrder = (id, name) => {
 }
 
 let sendOrder = () => {
+    
     if(currentOrder.length > 0) {
-        let order = {
-            partyId: partyId,
-            itemIds: currentOrder
+        let tableNumber;
+        let serverName = partyServerHTML.innerHTML;
+        if(partyTableHTML.innerHTML != ""){
+            tableNumber = parseInt(partyTableHTML.innerHTML);
+        } else {
+            tableNumber = parseInt(tableNumberInput.value);
         }
 
-        while(orderList.hasChildNodes()) {
-            orderList.removeChild(orderList.lastChild);
-        }
-        currentOrder = [];
+        if(tableNumber && typeof tableNumber == "number") { 
+            let order = {
+                partyId: partyId,
+                tableNumber: tableNumber,
+                serverName: serverName,
+                itemIds: currentOrder
+            }
 
-        let xhttp = new XMLHttpRequest();
-        xhttp.open("POST", "/pos", true);
-        xhttp.setRequestHeader("Content-type", "application/json");
-        xhttp.send(JSON.stringify(order));
+
+            while(orderList.hasChildNodes()) {
+                orderList.removeChild(orderList.lastChild);
+            }
+            currentOrder = [];
+
+            sendData(order, (res) => {
+                window.location = res.response;
+            });
+
+            tableNumberInput.value = "";
+        } else {
+            console.log("Not a number");
+        }
     }
+}
+
+let sendData = (order, callback) => {
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if(this.readyState == 4 && this.status == 200) {
+            callback(this);
+        }
+    };
+    xhttp.open("POST", "/pos", true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send(JSON.stringify(order));
 }
 
 let deleteItem = (listItem) => {
@@ -45,13 +76,16 @@ let deleteItem = (listItem) => {
 let changePartySelected = (id, partyTblNumber, partyServer) => {
     if(id == partyId) {
         partyId = "New";
-        tableNumberInput.style.visibility = "visible"
+        partyTableHTML.innerHTML = "";
+        partyServerHTML.innerHTML = username;
+        tableNumberInput.setAttribute("class", "d-inline");
     } else {
-        partyId = id
-        tableNumberInput.style.visibility = "hidden"
+        partyId = id;
+        partyTableHTML.innerHTML = partyTblNumber;
+        partyServerHTML.innerHTML = partyServer;
+        tableNumberInput.setAttribute("class", "d-none");
     }
-    partyTableHTML.innerHTML = partyTblNumber;
-    partyServerHTML.innerHTML = partyServer;
+
 }
 
 if(party) {
@@ -59,8 +93,6 @@ if(party) {
         let id = party[i].id;
         let partyTableNumber = party[i].getElementsByClassName("number")[0].innerHTML;
         let partyServer = party[i].getElementsByClassName("name")[0].innerHTML;
-        console.log(partyTableNumber);
-        console.log(partyServer);
         party[i].addEventListener('click', () => {changePartySelected(id, partyTableNumber, partyServer)}, false);
     }
 }
