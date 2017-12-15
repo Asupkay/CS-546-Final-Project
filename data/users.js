@@ -34,6 +34,16 @@ let exportedMethods = {
         return user;
     },
 
+    async getUserByName(username) {
+        if(typeof username !== "string") throw "username must be of type string.";
+        
+        const usersCollection = await users();
+        const user = await usersCollection.findOne({ username: username });
+    
+        if (!user) throw "Item not found";
+        return user;
+    },
+
     async getAllUsers() {
         const usersCollection = await users();
         var temp = await usersCollection.find({}).toArray();

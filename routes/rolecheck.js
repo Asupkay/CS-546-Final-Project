@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const verify = require('./middleware/verify');
 
-router.get('/rolecheck', verify.ensureLoggedIn, (req, res) => {
+router.get('/', verify.ensureLoggedIn, (req, res) => {
     if(req.user.role == "chef") {
         res.redirect("/queue");
     } else {
