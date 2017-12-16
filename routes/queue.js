@@ -20,7 +20,8 @@ router.get('/', (req, res) => {
                         {
                           itemId: "100",
                           itemName: "Ice Cream"
-                        }]
+                        }],
+                        isCompleted: "false"
                       },
                       {
                         orderId: "20",
@@ -32,7 +33,8 @@ router.get('/', (req, res) => {
                         {
                           itemId: "400",
                           itemName: "Fries"
-                        }]
+                        }],
+                        isCompleted: "false"
                       }
                     ]
                   },
@@ -50,7 +52,8 @@ router.get('/', (req, res) => {
                         {
                           itemId: "600",
                           itemName: "Beef"
-                        }]
+                        }],
+                        isCompleted: "false"
                       },
                       {
                         orderId: "40",
@@ -62,22 +65,33 @@ router.get('/', (req, res) => {
                         {
                           itemId: "800",
                           itemName: "Cranberries"
-                        }]
+                        }],
+                        isCompleted: "true"
                       }
                     ]
                   }
                 ];
 
-  res.render('queue/parties', {parties: parties});
+  var filtered = JSON.parse(JSON.stringify(parties));
+
+  for (party in filtered) {
+    for (order in filtered[party].orders) {
+      if (filtered[party].orders[order].isCompleted === "true") {
+        delete filtered[party].orders[order];
+      }
+    }
+  }
+
+  res.render('queue/parties', {parties: filtered});
 });
 
 //post a number to delete an order from the queue
 router.post('/', async (req, res) => {
     let orderInfo = req.body;
 
-    await partiesData.deleteOrder(req.body.orderId);
+    await partiesData.completeOrder(req.body.orderId);
 
-    res.redirect("/queue");
+    res.send("/queue");
 });
 
 module.exports = router;
