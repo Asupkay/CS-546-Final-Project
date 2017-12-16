@@ -5,6 +5,7 @@ let submitButton = document.getElementById("submitOrder");
 let partyTableHTML = document.getElementById("partyTableNumber");
 let partyServerHTML = document.getElementById("partyServerName");
 let tableNumberInput = document.getElementById("tableNumberInput");
+let errorBox = document.getElementById("error-box");
 let currentOrder = [];
 let partyId = "New";
 let username = partyServerHTML.innerHTML;
@@ -50,7 +51,8 @@ let sendOrder = () => {
 
             tableNumberInput.value = "";
         } else {
-            console.log("Not a number");
+            errorBox.style.display = "block";
+            errorBox.innerHTML = "Must Provide Table Number For New Tables";
         }
     }
 }
@@ -80,6 +82,8 @@ let deleteItem = (listItem) => {
 
 
 let changePartySelected = (id, partyTblNumber, partyServer) => {
+    errorBox.style.display = "none";
+
     if(id == partyId) {
         partyId = "New";
         partyTableHTML.innerHTML = "";

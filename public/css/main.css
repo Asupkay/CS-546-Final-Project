@@ -52,6 +52,7 @@ html {
     background-color: #7F7979;
 }
 
+
 .order {
     overflow: hidden;
     background-color: #575556;
@@ -81,7 +82,15 @@ html {
     margin-bottom: 0px;
 }
 
+#error-box {
+    display: none;
+    padding: 5px 0px;
+    margin: 0px 5px;
+    text-align: center;
+    color: white;
+    background-color: red;
+}
+
 #submitOrder {
-    margin-bottom: 5px;
-    margin-right: 5px;
+    margin: 5px;
 }
