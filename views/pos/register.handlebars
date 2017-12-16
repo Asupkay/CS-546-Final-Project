@@ -17,18 +17,20 @@
             <p id="partyServerName" class="d-inline">{{user.username}}</p>
         </div>
     </article>
-    <div class="row">
-        <article id="items" class="col">
-            {{#each items}} 
-                <button id="{{this.itemId}}" class="item btn btn-secondary" >
-                    {{this.itemName}}
-                </button>
-            {{/each}} 
-        </article>
-        <article id="orderLog" class="col">
-            <ul id="orderList">
-            </ul>
-        </article>
+    <div class="order" style="overflow: hidden">
+        <div class="row">
+            <article id="items" class="col">
+                {{#each items}} 
+                    <button id="{{this.itemId}}" class="item btn btn-secondary" >
+                        {{this.itemName}}
+                    </button>
+                {{/each}} 
+            </article>
+            <article id="orderLog" class="col">
+                <ul id="orderList">
+                </ul>
+            </article>
+        </div>
+        <button id="submitOrder" class="btn btn-primary float-right">Submit</button>
     </div>
-    <button id="submitOrder" class="btn btn-primary float-right">Submit</button>
 </div>

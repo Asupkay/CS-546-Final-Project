@@ -10,6 +10,8 @@ let partyId = "New";
 let username = partyServerHTML.innerHTML;
 
 let pushToOrder = (id, name) => {
+    orderList.style.visibility = "visible"
+
     currentOrder.push(id);
     let li = document.createElement("li");
     li.addEventListener('click', () => {deleteItem(li)}, false);
@@ -70,6 +72,10 @@ let deleteItem = (listItem) => {
     let index =  nodes.indexOf(listItem);
     orderList.removeChild(listItem);
     currentOrder.splice(index, 1);
+
+    if(currentOrder.length == 0) {
+        orderList.style.visibility = "hidden";
+    }
 }
 
 
