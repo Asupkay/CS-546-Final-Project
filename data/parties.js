@@ -42,7 +42,7 @@ let exportedMethods = {
 
         const partiesCollection = await parties();
         var allOurParties = await this.getAllParties();
-        var breakOut = fales;
+        var breakOut = false;
         var partyIdForQuery = null;
 
         var updatedParty = {};
