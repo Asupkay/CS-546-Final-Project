@@ -1,11 +1,11 @@
 <div class="row">
-  <div class="col-sm-12">
-    <div id="login-form" action="/login" method="post">
+    <div id="login-form" class="col text-center">
+      <h1>Point of Snail System</h1>
       <div>
 
         <label for="username">Username:</label>
         <input type="text" id="usernameField" name="username" value="{{username}}">
-
+        </br>
         <label for="password">Password:</label>
         <input type="password" id="passwordField" name="password" value="{{password}}">
 
@@ -15,8 +15,7 @@
         {{ message }}
       </div>
 
-      <button id="loginButton" type="submit">Log In</button>
+      <button class="btn btn-primary" id="loginButton" type="submit">Log In</button>
 
-    </form>
-  </div>
+    </div>
 </div>

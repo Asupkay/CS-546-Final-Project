@@ -7,6 +7,11 @@ main {
     background-color: #323031
 }
 
+#login-form {
+    padding: 10px 0px;
+    background-color: #C1BDB3;
+}
+
 #partyOrders > .row {
     background-color: #3D3B3C;
 }
