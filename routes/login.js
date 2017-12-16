@@ -12,7 +12,7 @@ passport.use(new JsonStrategy(
     usersData.getUserByName(username, function (err, user) {
       if (err) { return done(err); }
       if (!user) { return done(null, false); }
-      //not a function?
+
       bcrypt.compare(password, user.hashedPassword, (err, res) => {
         if (res === true){
           return done(null, user);

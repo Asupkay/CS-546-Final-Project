@@ -1,5 +1,6 @@
 <div>
     <article id="partyOrders" class="container text-center">
+        <h1 id="noOrders">Orders</h1>
         {{#each parties}}
             {{#if this.orders.length}}
                 <div class="row">
@@ -24,8 +25,5 @@
                 </div>
             {{/if}}
         {{/each}}
-        {{#unless parties.orders.length}}
-            <h1 id="noOrders">There are no orders!</h1>
-        {{/unless}}
     </article>
 </div>
