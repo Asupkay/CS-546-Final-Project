@@ -76,6 +76,8 @@ router.post('/', async (req, res) => {
     let orderInfo = req.body;
 
     await partiesData.deleteOrder(req.body.orderId);
+
+    res.redirect("/queue");
 });
 
 module.exports = router;
