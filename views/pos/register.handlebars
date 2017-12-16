@@ -23,7 +23,9 @@
                 <p class="title">Items:</p>
                 {{#each items}} 
                     <button id="{{this.itemId}}" class="item btn" >
-                        {{this.itemName}}
+                        <p class="name">{{this.itemName}}</p>
+                        <p class="d-inline">$</p>
+                        <p class="d-inline price">{{this.price}}</p>
                     </button>
                 {{/each}} 
             </article>
@@ -31,6 +33,10 @@
                 <p class="title">Order:</p>
                 <ul id="orderList">
                 </ul>
+                <div class="orderTotal title">
+                    <p class="d-inline">Total: $</p>
+                    <p class="d-inline" id="orderTotalPrice">0</p>
+                </div>
             </article>
         </div>
         <p id="error-box"></p>

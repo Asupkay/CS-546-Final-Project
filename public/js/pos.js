@@ -6,19 +6,26 @@ let partyTableHTML = document.getElementById("partyTableNumber");
 let partyServerHTML = document.getElementById("partyServerName");
 let tableNumberInput = document.getElementById("tableNumberInput");
 let errorBox = document.getElementById("error-box");
+let orderTotalPrice = document.getElementById("orderTotalPrice");
 let currentOrder = [];
+let currentOrderPriceList = [];
 let partyId = "New";
+let orderPrice = 0;
+
 if(partyServerHTML) {
     let username = partyServerHTML.innerHTML;
 }
 
-let pushToOrder = (id, name) => {
+let pushToOrder = (id, name, price) => {
     orderList.style.visibility = "visible"
 
+    orderPrice += parseFloat(price);
+    orderTotalPrice.innerHTML = orderPrice;
+    currentOrderPriceList.push(price);
     currentOrder.push(id);
     let li = document.createElement("li");
     li.addEventListener('click', () => {deleteItem(li)}, false);
-    li.appendChild(document.createTextNode(name));
+    li.appendChild(document.createTextNode(name + " " + price));
     orderList.appendChild(li);
 }
 
@@ -36,6 +43,7 @@ let sendOrder = () => {
         if(tableNumber && typeof tableNumber == "number") { 
             let order = {
                 partyId: partyId,
+                orderPrice: orderPrice,
                 tableNumber: tableNumber,
                 serverName: serverName,
                 itemIds: currentOrder
@@ -46,7 +54,8 @@ let sendOrder = () => {
                 orderList.removeChild(orderList.lastChild);
             }
             currentOrder = [];
-
+            orderPrice = 0;
+            orderTotalPrice.innerHTML = orderPrice;
             sendData(order, (res) => {
                 window.location = res.response;
             });
@@ -76,12 +85,15 @@ let deleteItem = (listItem) => {
     let index =  nodes.indexOf(listItem);
     orderList.removeChild(listItem);
     currentOrder.splice(index, 1);
+    let price = currentOrderPriceList[index];
+    currentOrderPriceList.splice(index, 1);
+    orderPrice -= price;
+    orderTotalPrice.innerHTML = orderPrice;
 
     if(currentOrder.length == 0) {
         orderList.style.visibility = "hidden";
     }
 }
-
 
 let changePartySelected = (id, partyTblNumber, partyServer) => {
     errorBox.style.display = "none";
@@ -112,8 +124,9 @@ if(party) {
 if(item) {
     for(let i = 0; i < item.length; i++) {
         let id = item[i].id;
-        let name = item[i].innerHTML;
-        item[i].addEventListener('click', () => {pushToOrder(id, name)}, false);
+        let name = item[i].getElementsByClassName("name")[0].innerHTML;
+        let price = item[i].getElementsByClassName("price")[0].innerHTML;
+        item[i].addEventListener('click', () => {pushToOrder(id, name, price)}, false);
     } 
 }
 
