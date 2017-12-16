@@ -20,13 +20,15 @@
     <div class="order" style="overflow: hidden">
         <div class="row">
             <article id="items" class="col">
+                <p class="title">Items:</p>
                 {{#each items}} 
-                    <button id="{{this.itemId}}" class="item btn btn-secondary" >
+                    <button id="{{this.itemId}}" class="item btn" >
                         {{this.itemName}}
                     </button>
                 {{/each}} 
             </article>
             <article id="orderLog" class="col">
+                <p class="title">Order:</p>
                 <ul id="orderList">
                 </ul>
             </article>
