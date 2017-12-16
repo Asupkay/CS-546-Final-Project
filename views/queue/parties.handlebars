@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="container">
                         <div class="partyHeader">
-                            <p>Party ID: {{this.partyId}}</p>
+                            <p>Party ID: {{this.partyId}} {{this.orders.length}}</p>
                             <p class="tableNumber">Table {{this.tableNumber}}</p>
                         </div>
                         <div id="orders" class="row">
@@ -21,6 +21,10 @@
                             {{/each}}
                         </div>
                     </div>
+                </div>
+            {{/else}}
+                <div>
+                    <p>There are no orders!</p>
                 </div>
             {{/if}}
         {{/each}}

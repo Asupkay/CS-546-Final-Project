@@ -3,81 +3,15 @@ const router = express.Router();
 const data = require("../data");
 const partiesData = data.parties;
 
-router.get('/', (req, res) => {
-  //let parties = partiesData.getAllParties();
-  let parties = [
-                  {
-                    partyId: "1",
-                    tableNumber: "2",
-                    orders: [
-                      {
-                        orderId: "10",
-                        items: [
-                        {
-                          itemId: "200",
-                          itemName: "Burger"
-                        },
-                        {
-                          itemId: "100",
-                          itemName: "Ice Cream"
-                        }],
-                        isCompleted: "false"
-                      },
-                      {
-                        orderId: "20",
-                        items: [
-                        {
-                          itemId: "300",
-                          itemName: "Pie"
-                        },
-                        {
-                          itemId: "400",
-                          itemName: "Fries"
-                        }],
-                        isCompleted: "false"
-                      }
-                    ]
-                  },
-                  {
-                    partyId: "2",
-                    tableNumber: "3",
-                    orders: [
-                      {
-                        orderId: "30",
-                        items: [
-                        {
-                          itemId: "500",
-                          itemName: "Appetizer"
-                        },
-                        {
-                          itemId: "600",
-                          itemName: "Beef"
-                        }],
-                        isCompleted: "false"
-                      },
-                      {
-                        orderId: "40",
-                        items: [
-                        {
-                          itemId: "700",
-                          itemName: "Canned Tuna"
-                        },
-                        {
-                          itemId: "800",
-                          itemName: "Cranberries"
-                        }],
-                        isCompleted: "true"
-                      }
-                    ]
-                  }
-                ];
+router.get('/', async (req, res) => {
+  let parties = await partiesData.getAllParties();
 
   var filtered = JSON.parse(JSON.stringify(parties));
 
   for (party in filtered) {
     for (order in filtered[party].orders) {
-      if (filtered[party].orders[order].isCompleted === "true") {
-        delete filtered[party].orders[order];
+      if (filtered[party].orders[order].isCompleted === true) {
+        filtered[party].orders.splice(order, 1);
       }
     }
   }
