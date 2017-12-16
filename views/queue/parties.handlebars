@@ -22,11 +22,10 @@
                         </div>
                     </div>
                 </div>
-            {{/else}}
-                <div>
-                    <p>There are no orders!</p>
-                </div>
             {{/if}}
         {{/each}}
+        {{#unless parties.orders.length}}
+            <h1 id="noOrders">There are no orders!</h1>
+        {{/unless}}
     </article>
 </div>
