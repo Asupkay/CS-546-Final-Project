@@ -5,7 +5,7 @@ const uuid = require('node-uuid');
 const bcrypt = require('bcrypt-nodejs');
 var timestamp = require('time-stamp');
 
-async function makeOrder(ids) {
+async function makeOrder(ids, price) {
     var order = [];
 
     for (var i = 0; i < ids.length; i++) {
@@ -22,10 +22,9 @@ async function makeOrder(ids) {
         orderId: uuid.v4(),
         timeCreated: timestamp('YYYYMMDD'),
         isCompleted: false,
+        price: price,
         items: order
     };
-    console.log("this is our new order");
-    console.log(newOrder);
     return newOrder;
 }
 
@@ -76,11 +75,12 @@ let exportedMethods = {
     },
 
     //push order to party
-    async addOrder(id, itemIds) {
+    async addOrder(id, itemIds, price) {
         // console.log(id);
         // console.log(typeof id);
         if (typeof id !== "string") throw "The Party Id is of the wrong type.";
         if (!Array.isArray(itemIds)) throw "ItemIds of wrong type.";
+        if (typeof price !== "number") throw "Price must be a number.";
 
         const partiesCollection = await parties();
         const party = await partiesCollection.findOne({ partyId: id });
@@ -92,12 +92,10 @@ let exportedMethods = {
         updatedParty.tableNumber = party.tableNumber;
         updatedParty.orders = party.orders;
         try {
-            order = await makeOrder(itemIds);
+            order = await makeOrder(itemIds, price);
             //console.log(order);
             //party.orders.push(order);
             updatedParty.orders.push(order);
-            console.log("this is my updatedParty.orders");
-            console.log(updatedParty.orders);            
         } catch (error) {
             throw "There was an error trying to push the orders to the party";
         }

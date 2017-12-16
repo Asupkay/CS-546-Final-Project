@@ -19,10 +19,10 @@ router.post('/', async (req, res) => {
     let orderInfo = req.body;
 
     if(orderInfo.partyId != "New") {
-        await partiesData.addOrder(orderInfo.partyId, orderInfo.itemIds);
+        await partiesData.addOrder(orderInfo.partyId, orderInfo.itemIds, orderInfo.orderPrice);
     } else {
         let newPartyId = await partiesData.addParty(orderInfo.serverName, orderInfo.tableNumber);
-        await partiesData.addOrder(newPartyId, orderInfo.itemIds);
+        await partiesData.addOrder(newPartyId, orderInfo.itemIds, orderInfo.orderPrice);
     }
 
     let parties = await partiesData.getAllParties();
