@@ -5,11 +5,14 @@ let submitButton = document.getElementById("submitOrder");
 let partyTableHTML = document.getElementById("partyTableNumber");
 let partyServerHTML = document.getElementById("partyServerName");
 let tableNumberInput = document.getElementById("tableNumberInput");
+let errorBox = document.getElementById("error-box");
 let currentOrder = [];
 let partyId = "New";
 let username = partyServerHTML.innerHTML;
 
 let pushToOrder = (id, name) => {
+    orderList.style.visibility = "visible"
+
     currentOrder.push(id);
     let li = document.createElement("li");
     li.addEventListener('click', () => {deleteItem(li)}, false);
@@ -48,7 +51,8 @@ let sendOrder = () => {
 
             tableNumberInput.value = "";
         } else {
-            console.log("Not a number");
+            errorBox.style.display = "block";
+            errorBox.innerHTML = "Must Provide Table Number For New Tables";
         }
     }
 }
@@ -70,10 +74,16 @@ let deleteItem = (listItem) => {
     let index =  nodes.indexOf(listItem);
     orderList.removeChild(listItem);
     currentOrder.splice(index, 1);
+
+    if(currentOrder.length == 0) {
+        orderList.style.visibility = "hidden";
+    }
 }
 
 
 let changePartySelected = (id, partyTblNumber, partyServer) => {
+    errorBox.style.display = "none";
+
     if(id == partyId) {
         partyId = "New";
         partyTableHTML.innerHTML = "";

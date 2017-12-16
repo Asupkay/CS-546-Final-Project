@@ -1,61 +1,96 @@
-/*p {
-    font-family: "Courier New", Courier, monospace;
-    font-size: 10px;
-}
-
-body {
-    background-color: cyan;
-    font-family: "Courier New", Courier, monospace;
-}
-
-html, body {
+html {
+    background-color: #323031;
     height: 100%;
 }
-main {
-    min-height: 90%;
-    background: rgb(129, 10, 199);
-}
-main:after {
-    content: "";
-    display: block;
-    height: 100px;
-}
-footer {
-    height: 10%;
-    background: rgb(109, 111, 228);
-}
-.footer {
-    float: right;
-    padding-right: 10px;
+
+#parties {
+    background-color: #323031;
 }
 
-.hidden {
-	display: none;
-}
-
-.form-control {
-    width: 20%;
-}
-
-.container {
-    padding-top: 5%;
-    text-align: center;
-}
-
-.item{
-    border-radius: 15px;
-    color: rgb(236, 134, 17);
-    background-color: rgb(32, 112, 218);
-    font-size: 20px;
-}
-*/
-
-.party{
+.party {
+    background-color: #3D3B3C;
+    border-color: #7F7979;
+    color: #C1BDB3;
     margin: 5px;
     width: 15%;
     min-width: 150px;
 }
 
+.party:hover {
+    background-color: #7F7979;
+}
+
+.party-info {
+    padding: 5px 0px;
+    font-size: calc(12px + .5vw);
+    background-color: #3D3B3C;
+    color: #C1BDB3;
+}
+
+.party-info > input {
+    width: 50px;   
+}
+
 .party > p {
     font-size: calc(8px + .5vw);
+}
+
+#items {
+    background-color: #575556;
+    padding-right: 0px;
+    margin: 5px;
+}
+
+.item {
+    background-color: #3D3B3C;
+    border-color: #7F7979;
+    color: #C1BDB3;
+    margin: 5px;
+}
+
+.item:hover {
+    background-color: #7F7979;
+}
+
+
+.order {
+    overflow: hidden;
+    background-color: #575556;
+}
+
+#orderLog {
+    background-color: #575556;
+    padding-left: 0px;
+    margin: 5px 5px;
+}
+
+.title {
+    background-color: #C1BDB3; 
+    border: 1px black solid;
+    margin-bottom: 0px;
+    padding-left: 5px;
+}
+
+#orderList {
+    background-color: white;
+    list-style-type: none;
+    padding-left: 5px;
+    border-left: 1px black solid;
+    border-right: 1px black solid;
+    border-bottom: 1px black solid;
+    visibility: hidden;
+    margin-bottom: 0px;
+}
+
+#error-box {
+    display: none;
+    padding: 5px 0px;
+    margin: 0px 5px;
+    text-align: center;
+    color: white;
+    background-color: red;
+}
+
+#submitOrder {
+    margin: 5px;
 }
