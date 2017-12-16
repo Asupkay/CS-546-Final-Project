@@ -8,7 +8,9 @@ let tableNumberInput = document.getElementById("tableNumberInput");
 let errorBox = document.getElementById("error-box");
 let currentOrder = [];
 let partyId = "New";
-let username = partyServerHTML.innerHTML;
+if(partyServerHTML) {
+    let username = partyServerHTML.innerHTML;
+}
 
 let pushToOrder = (id, name) => {
     orderList.style.visibility = "visible"

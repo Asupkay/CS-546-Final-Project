@@ -3,6 +3,44 @@ html {
     height: 100%;
 }
 
+main {
+    background-color: #323031
+}
+
+#partyOrders > .row {
+    background-color: #3D3B3C;
+}
+
+.partyHeader {
+    border: 1px black solid;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #C1BDB3;
+}
+
+.partyHeader > p{
+    margin: 0px;
+}
+
+#orders {
+    padding: 10px 0px;
+    background-color: #7F7979;
+}
+
+#orders > .col > p {
+    margin: 0px;
+}
+
+.deleteOrder {
+    margin-top: 5px;
+    color: #C1BDB3;
+    background-color: #3D3B3C;
+}
+
+.deleteOrder:hover {
+    background-color: #7F7979
+}
+
 #parties {
     background-color: #323031;
 }
