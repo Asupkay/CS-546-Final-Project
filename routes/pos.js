@@ -5,6 +5,8 @@ const partiesData = data.parties;
 const itemsData = data.items;
 
 router.get("/", async (req, res) => {
+    console.log(req.user);
+    
     let parties = await partiesData.getAllParties();
     let items = await itemsData.getAllItems();
     let user = {

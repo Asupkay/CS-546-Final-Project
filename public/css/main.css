@@ -7,6 +7,10 @@ main {
     background-color: #323031
 }
 
+#noOrders {
+    color: #7F7979;
+}
+
 #login-form {
     padding: 10px 0px;
     background-color: #C1BDB3;
