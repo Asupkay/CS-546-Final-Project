@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 const verify = require('./middleware/verify');
 
-router.get('/', verify.ensureLoggedIn, (req, res) => {
-    if(req.user.role == "chef") {
-        res.redirect("/queue");
+router.post('/', (req, res) => {
+    if(req.body.role === "chef") {
+        res.send("/queue");
     } else {
-        res.redirect("/pos");
+        res.send("/pos");
     }
 });
 
