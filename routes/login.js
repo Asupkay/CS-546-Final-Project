@@ -44,12 +44,10 @@ router.get("/", (req, res) => {
 router.post("/", function(req, res, next) {
   passport.authenticate('json', function(err, user, info) {
     if (err) {return next(err); }
-    if (!user) { return res.render('login/form', { message: 'Authentication failed' });}
-    console.log(user);
-    //erroring here passport.initialize error
+    if (!user) { res.render('login/form', { message: 'Authentication failed' });}
     req.logIn(user, function(err) {
       if (err) { return next(err); }
-      return res.redirect('/rolecheck');
+      res.send({"url": "/rolecheck", "user": user});
     });
   })(req, res, next);
 });

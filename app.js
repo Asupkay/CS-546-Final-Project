@@ -14,6 +14,10 @@ const handlebars = require('handlebars');
 //handlebars
 app.use('/public', static);
 app.use(bodyParser.json());
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 configRoutes(app);
 
 //default layout. set to default layout
@@ -50,9 +54,6 @@ passport.deserializeUser(function(id, cb) {
 app.use(require('cookie-parser')());
 app.use(require('body-parser').urlencoded({ extended: true }));
 app.use(require('express-session')({ secret: 'donttellme', resave: false, saveUninitialized: false }));
-
-app.use(passport.initialize());
-app.use(passport.session());
 
 app.listen(3000, () => {
     console.log('Server is running on http://localhost:3000');
