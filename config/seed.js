@@ -10,6 +10,7 @@ async function main() {
         console.log("This is the db " + db);
         var dbc = await db.dropDatabase();
         var name = await users.addUser("AlexFood", "server", "banana");
+        var name = await users.addUser("AlexChef", "chef", "banana");
         var item = await items.addItem("Burger", 45.69);
         var i = await items.addItem("Ice Cream", 35.69);
         var party = await parties.addParty("AlexFood", 2);
