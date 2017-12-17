@@ -7,11 +7,10 @@ router.get('/', async (req, res) => {
   let parties = await partiesData.getAllParties();
 
   var filtered = JSON.parse(JSON.stringify(parties));
-
   for (party in filtered) {
-    for (order in filtered[party].orders) {
-      if (filtered[party].orders[order].isCompleted === true) {
-        filtered[party].orders.splice(order, 1);
+    for (var i = filtered[party].orders.length - 1; i >= 0; i--) {
+      if (filtered[party].orders[i].isCompleted == true) {
+        filtered[party].orders.splice(i, 1);
       }
     }
   }
