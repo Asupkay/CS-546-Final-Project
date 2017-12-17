@@ -13,39 +13,40 @@
 
 ## File Structure
 
-- app.js
-- data
-    - index.js
-    - items.js
-    - parties.js
-    - users.js
+- app.js - express server
+- data - data access files
+    - index.js - links data together
+    - items.js - access the items
+    - parties.js - access the parties and orders
+    - users.js - access the users
 - package.json
-- public
-    - css
-        - main.css
-    - js
-        - login.js
-        - pos.js
-        - queue.js
-- routes
+- public - public files
+    - css - stying files
+        - bootstrap files
+        - main.css - custom css for pages
+    - js - client side javascript
+        - login.js - composes an ajax request to check the login
+        - pos.js - Manages parties and orders client side before sending them off
+        - queue.js - Manages deleting orders 
+- routes - different routes
     - index.js
-    - login.js
+    - login.js - login routes
     - middleware
-        - verify.js
-    - pos.js
-    - queue.js
-    - rolecheck.js
+        - verify.js - used to verify user is logged in
+    - pos.js - pos management for creating new parties, and new orders and then putting them in the database 
+    - queue.js - queue logic for deleting orders in the database
+    - rolecheck.js - when logged in we direct to rolecheck to direct the user to the proper system
 - config
     - mongoCollections.js
     - mongoConnection.js
-    - seed.js
+    - seed.js - seed two users, three parties, and some items
     - settings.json
 - views 
     - layouts
         - main.handlebars
     - login
-        - form.handlebars
+        - form.handlebars - login
     - pos
-        - register.handlebars
+        - register.handlebars - pos for adding items to orders
     - queue
-        - parties.handlebars
+        - parties.handlebars - queue system for the kitchen
