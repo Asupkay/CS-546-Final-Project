@@ -10,6 +10,7 @@ let orderTotalPrice = document.getElementById("orderTotalPrice");
 let currentOrder = [];
 let currentOrderPriceList = [];
 let partyId = "New";
+let username = "Alex";
 let orderPrice = 0;
 
 if(partyServerHTML) {
