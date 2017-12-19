@@ -1,6 +1,6 @@
 # CS-546-Final-Project
 
-**Description:** Final Project for Web Programming I at Stevens Institute of Technology. This is a point of sale system for a restaurant. It includes the servers sending orders to the kitchen in the back. This is done through an interactive UI for the server where they can select parties or create new ones and add orders too that party. The order will then show up in the kitchen where they can complete the order once it is made.
+**Description:** This is a team Final Project for Web Programming I at Stevens Institute of Technology. Overall, is a point of sale system for a restaurant. It includes an interface for the servers to send orders to the kitchen in. This is done through an UI for the server where they can select parties or create new ones and add orders to that party. The order will then show up in the kitchen where they can complete the order once it is made.
 
 ## Installation Instructions
 
@@ -43,7 +43,7 @@
     - settings.json
 - views 
     - layouts
-        - main.handlebars
+        - main.handlebars - default handlebars file
     - login
         - form.handlebars - login
     - pos
