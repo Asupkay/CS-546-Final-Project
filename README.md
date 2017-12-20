@@ -6,7 +6,7 @@
 
 1. `npm install` - Install the different node modules
 2. `service mongod start` - Start up the mongo db
-3. `node config/seed.js` - seed the database with a couple users, some parties, and some items
+3. `node config/seed.js` - seed the database with a couple users (AlexFood AlexChef), some parties (1, 2, 3), and some items (burger and icecream). You can add more items or users here if you would like.
 4. `npm start` - start up the server
 5. navigate to `localhost:3000`
 6. Login with either `username: AlexFood password: banana` to go to the pos system or `username: AlexChef password: banana` to go to the queue
@@ -45,7 +45,7 @@
     - layouts
         - main.handlebars - default handlebars file
     - login
-        - form.handlebars - login
+        - form.handlebars - the login forom
     - pos
         - register.handlebars - pos for adding items to orders
     - queue
